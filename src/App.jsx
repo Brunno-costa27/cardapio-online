@@ -1,18 +1,47 @@
+import { Home } from './Pages/Home'
+import {Cart} from './Pages/Cart'
+import {Favorites} from './Pages/Favorites'
+import {Order} from './Pages/Order'
 
-import './App.css'
-import { ProductList } from './components/ProductList';
-
+//side bar
+import Sidebar from './components/Sidebar'
+//react router dom
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Outlet,
+  Route
+}from 'react-router-dom'
 function App() {
-
-
-  const products = [
-    { id: 1, name: 'Produto 1', description: 'Descrição do Produto 1', price: 'R$ 10,00' },
-    { id: 2, name: 'Produto 2', description: 'Descrição do Produto 2', price: 'R$ 20,00' },
-    // Adicione mais produtos conforme necessário
-];
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<Root/>}>
+        <Route index element={<Home/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/favs' element={<Favorites/>}/>
+        <Route path='/orders' element={<Order/>}/>
+      </Route>
+    )
+  )
   return (
-    <ProductList products={products}/>
+    <div className="App">
+     <RouterProvider router={router}/>
+    </div>
   )
 }
 
 export default App
+const Root = ()=>{
+  return(
+    <>
+    <div>
+      <Sidebar/>
+    </div>
+    <div>
+      <Outlet/>
+    </div>
+    </>
+    
+  )
+}
