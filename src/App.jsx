@@ -25,7 +25,7 @@ function App() {
     )
   )
   return (
-    <div className="App">
+    <div className="">
      <RouterProvider router={router}/>
     </div>
   )
@@ -35,7 +35,7 @@ export default App
 const Root = ()=>{
   return(
     <>
-    <div>
+    <div className=''>
       <Sidebar/>
     </div>
     <div>

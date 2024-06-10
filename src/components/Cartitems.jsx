@@ -23,7 +23,7 @@ const Cartitems = () => {
                 <tr className='border-dashed border-b'>
                   <td className='py-5'>
                     <div className='flex items-center space-x-3 py-2'>
-                      <img src="https://res.cloudinary.com/beleza-na-web/image/upload/w_1500,f_auto,fl_progressive,q_auto:eco,w_210,h_210/v1/imagens/product/E2024060915/5525d38f-365d-4af8-a2c6-a180f98bf753-e2024060915-niina-secrets-colonia-celebrate-lip-oil-shine-flower.jpg" alt="" className='w-[100px] h-[100px] border rounded p-2'/>
+                      <img src="" alt="erro" className='w-[100px] h-[100px] border rounded p-2'/>
                       <div>
                       <h1 className='text-xl font-bold'>Glass</h1>
                       <p>Lorem, ipsum.</p>

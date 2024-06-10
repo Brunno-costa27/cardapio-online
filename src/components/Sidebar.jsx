@@ -5,8 +5,8 @@ import { IoHeartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
-    <div className="fixed top-0 left-0 h-screen p-2 bg-gray-100">
-      <ul className="p-5 space-y-8">
+    <div className="hidden sm:fixed sm:top-0 sm:left-0 sm:h-screen sm:p-2 bg-gray-100">
+      <ul className="sm:p-5 sm:space-y-8">
         <li>
           <button>
             <HiOutlineMenuAlt2 size={"1.5rem"} />
