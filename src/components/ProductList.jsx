@@ -16,7 +16,7 @@ export function ProductList({products}) {
                         <p>{product.description}</p>
                         <p className="font-bold">{product.price}</p>
                         <button
-                            onClick={() => handleBuy(product)}
+                            onClick={handleBuy(product.title)}
                             className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
                         >
                             Comprar
