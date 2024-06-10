@@ -5,7 +5,7 @@ import { IoHeartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
-    <div className="hidden sm:fixed sm:top-0 sm:left-0 sm:h-screen sm:p-2 bg-gray-100">
+    <div className="hidden sm:fixed sm:top-0 sm:left-0 sm:h-screen sm:p-2 ">
       <ul className="sm:p-5 sm:space-y-8">
         <li>
           <button>
