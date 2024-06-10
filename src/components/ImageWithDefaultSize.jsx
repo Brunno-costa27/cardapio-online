@@ -4,7 +4,7 @@ export function ImageWithDefaultSize({src, className}){
         <img
           src={src}
         //   alt={alt}
-          className={`w-full h-48 object-cover ${className}`}
+          className={`w-full h-96 object-cover ${className}`}
         //   {...props}
         />
       );

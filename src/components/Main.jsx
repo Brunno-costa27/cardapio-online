@@ -14,6 +14,8 @@ import { ImageWithDefaultSize } from './ImageWithDefaultSize';
 
 
 const Main = () => {
+
+    
     let Products = [
         {
             img: foto1,
@@ -67,15 +69,42 @@ const Main = () => {
     ]
 
     const handleBuy = (product) => {
+        console.log(product)
+
         // const message = `Olá, gostaria de comprar o seguinte produto: ${product}`;
-        const message = `Olá! Gostaria de fazer um pedido. Aqui está o produto que desejo:
-        🍕 Produto: ${product}
-        ℹ️ Por favor, informe o tempo estimado de entrega e o valor total. Muito obrigado!`;
+        const message = `Olá! Gostaria de fazer um pedido.
+         Aqui está o produto que desejo:
+        🍕 Produto: ${product.title};
+        📝 Descrição: ${product.description};
+        🔢 Quantidade: ${product.quantity};
+        📏 Tamanho: ${product.size};
+        ℹ️ Por favor, informe o tempo estimado de entrega e o valor total.
+        😊 Muito obrigado!`;
         const phone = '5584996492087'; // Coloque o número de telefone do estabelecimento aqui
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     };
 
+    const [size, setSize] = useState('pequena');
+    const [quantity, setQuantity] = useState(1);
+
+    const handleSizeChange = (event) => {
+        setSize(event.target.value);
+    };
+
+    const handleQuantityChange = (event) => {
+        setQuantity(parseInt(event.target.value));
+    };
+
+    const addToCart = (product) => {
+        const item = {
+            ...product,
+            size,
+            quantity,
+            };
+            handleBuy(item)
+        // console.log(item);
+    }
     const [filteredProducts, setFilteredProducts] = useState(Products)
     const inputRef = useRef(null);
     const searchHandler = (e) => {
@@ -173,30 +202,38 @@ const Main = () => {
                                             <div className='flex justify-between items-center'>
                                                 <p className='text-xl font-bold text-[#B5121B]'>R$ {product.price}.00</p>
 
-                                                <button onClick={() => handleBuy(product.title)}>
+                                                {/* <button onClick={() => handleBuy(product.title)}>
 
                                                     <IoLogoWhatsapp size={'1.4rem'} fill='#25D366' />
-                                                </button>
+                                                </button> */}
                                             </div>
-                                            
-                                            <div className="flex flex-col justify-start items-start py-2 gap-4 font-sans text-xl">
-                                                <div className='flex gap-4'>
-                                                <label className='text-center flex justify-center items-center font-bold' for="pizza-size">Tamanho:</label>
-                                                <select className='p-2' id="pizza-size">
-                                                    <option value="pequena">Pequena</option>
-                                                    <option value="media">Média</option>
-                                                    <option value="grande">Grande</option>
-                                                    <option value="familia">Família</option>
-                                                </select>
+
+                                            <div className="flex flex-col py-2 gap-4 font-sans text-xl">
+                                                <div className='flex gap-4 justify-between'>
+                                                    <label className='text-center flex justify-center items-center font-bold' htmlFor="pizza-size">Tamanho:</label>
+                                                    <select className='p-2' id="pizza-size " value={size} onChange={handleSizeChange}>
+                                                        <option value="pequena">Pequena</option>
+                                                        <option value="media">Média</option>
+                                                        <option value="grande">Grande</option>
+                                                        <option value="familia">Família</option>
+                                                    </select>
                                                 </div>
-                                                <div className='flex gap-4'>
-                                                <label className='p-2 font-bold' for="pizza-quantity">Quantidade:</label>
-                                                <input className='w-1/6 px-2 rounded-md focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]' type="number" id="pizza-quantity" />
+                                                <div className='flex gap-4 justify-between'>
+                                                    <label className='py-2 font-bold' htmlFor="pizza-quantity">Quantidade:</label>
+                                                    <input 
+                                                        className='w-1/6 px-2 rounded-md focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]'
+                                                        type="number" id="pizza-quantity"
+                                                        value={quantity}
+                                                        onChange={handleQuantityChange} />
                                                 </div>
                                             </div>
 
                                             <div className='flex justify-center items-center p-2 '>
-                                            <button className='w-full p-2  bg-gray-200  rounded-full text-xl hover:bg-[#B5121B] hover:text-white active:bg-[#B5121B] focus:outline-none focus:ring focus:ring-[#e47e83] '>Adicionar ao Carrinho</button>
+                                                <button
+                                                    onClick={() => addToCart(product)}
+                                                    className='w-full p-2  bg-gray-200  rounded-full text-xl hover:bg-[#B5121B] hover:text-white active:bg-[#B5121B] focus:outline-none focus:ring focus:ring-[#e47e83] '>
+                                                    Finalizar pedido
+                                                </button>
                                             </div>
                                         </div>
 
