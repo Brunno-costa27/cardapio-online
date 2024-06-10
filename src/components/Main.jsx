@@ -65,7 +65,7 @@ const Main = () => {
     ]
 
     const handleBuy = (product) => {
-        const message = `Olá, gostaria de comprar o seguinte produto: ${product.title}`;
+        const message = `Olá, gostaria de comprar o seguinte produto: ${product}`;
         const phone = '5584996492087'; // Coloque o número de telefone do estabelecimento aqui
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
