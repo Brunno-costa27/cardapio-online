@@ -163,15 +163,15 @@ const Main = () => {
                                         <div className='flex justify-center items-center'>
                                             <img src={product.img} alt="" className='w-full h-[60%]  object-cover rounded-t-xl' />
                                         </div>
-                                        <div className=' bg-gray-100 p-4 rounded-b-xl overflow-hidden'>
-                                            <h1 className='text-xl font-semibold'>{product.title}</h1>
-                                            <p className='text-sm'>{product.description}</p>
+                                        <div className='flex-col leading-loose bg-gray-100  p-4 rounded-b-xl overflow-hidden '>
+                                            <h1 className='text-xl text-[#B5121B] font-semibold'>{product.title}</h1>
+                                            <p className=' text-sm text-[#B5121B]'>{product.description}</p>
                                             <div className='flex justify-between items-center'>
-                                                <p className='text-xl font-bold'>${product.price}.00</p>
+                                                <p className='text-xl font-bold text-[#B5121B]'>R${product.price}.00</p>
 
                                                 <button onClick={() => handleBuy(product.title)}>
 
-                                                    <IoLogoWhatsapp size={'1.4rem'} />
+                                                    <IoLogoWhatsapp size={'1.4rem'} fill='#25D366'/>
                                                 </button>
                                             </div>
                                         </div>
