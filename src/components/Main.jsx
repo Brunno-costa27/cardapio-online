@@ -65,7 +65,11 @@ const Main = () => {
     ]
 
     const handleBuy = (product) => {
-        const message = `Olá, gostaria de comprar o seguinte produto: ${product}`;
+        // const message = `Olá, gostaria de comprar o seguinte produto: ${product}`;
+        const message = `Olá! Gostaria de fazer um pedido. Aqui está o produto que desejo:
+        Produto: ${product}
+        Imagem: "https://media.istockphoto.com/id/1459715799/pt/foto/pizza-with-ham-and-cheese.jpg?s=1024x1024&w=is&k=20&c=FPrWS4Kpf2aGHN2PusLkln_Uxk42rPIzbbC9ebRCZX4="
+        Por favor, informe o tempo estimado de entrega e o valor total. Muito obrigado!`;
         const phone = '5584996492087'; // Coloque o número de telefone do estabelecimento aqui
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
@@ -162,12 +166,12 @@ const Main = () => {
                                         <div className='m-2 bg-gray-100 p-2 overflow-hidden'>
                                             <h1 className='text-xl font-semibold'>{product.title}</h1>
                                             <p className='text-sm'>{product.description}</p>
-                                            <div  className='flex justify-between items-center'>
+                                            <div className='flex justify-between items-center'>
                                                 <p className='text-xl font-bold'>${product.price}.00</p>
-                                                
+
                                                 <button onClick={() => handleBuy(product.title)}>
-                                                
-                                                <IoLogoWhatsapp size={'1.4rem'} />
+
+                                                    <IoLogoWhatsapp size={'1.4rem'} />
                                                 </button>
                                             </div>
                                         </div>
