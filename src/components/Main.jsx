@@ -99,9 +99,11 @@ const Main = () => {
             <Sidebar />
 
             <div className='w-full px-5 sm:w-full relative'>
-                <div className='sticky top-0 z-10'>
-                    <div className='header bg-[#9E0000] w-full py-4 flex-col justify-center items-center sm:flex sm:justify-between sm:items-center sm:p-4 '>
-                        <h1 className='text-white text-3xl font-bold py-4 text-center'>🍕 Pizza Shop</h1>
+                <div className=' sticky top-0 z-10'>
+                    <div className='header bg-[#9E0000] w-full py-4 lg:flex justify-center items-center sm:flex sm:gap-2 sm:justify-between  sm:p-4 '>
+                        <div className='justify-center items-center'>
+                            <h1 className='text-white text-3xl font-bold py-4 text-center'>🍕 Pizza Shop</h1>
+                        </div>
                         <div className="search flex justify-between items-center px-5 py-2 bg-gray-100 rounded">
                             <input type="text" placeholder='Search product' className='bg-transparent outline-0'
                                 onChange={searchHandler}
@@ -177,10 +179,10 @@ const Main = () => {
                                                 </button>
                                             </div>
                                             
-                                            <div className="flex flex-col justify-start items-start py-2 gap-4 font-sans">
+                                            <div className="flex flex-col justify-start items-start py-2 gap-4 font-sans text-xl">
                                                 <div className='flex gap-4'>
-                                                <label for="pizza-size">Tamanho:</label>
-                                                <select id="pizza-size">
+                                                <label className='text-center flex justify-center items-center font-bold' for="pizza-size">Tamanho:</label>
+                                                <select className='p-2' id="pizza-size">
                                                     <option value="pequena">Pequena</option>
                                                     <option value="media">Média</option>
                                                     <option value="grande">Grande</option>
@@ -188,13 +190,13 @@ const Main = () => {
                                                 </select>
                                                 </div>
                                                 <div className='flex gap-4'>
-                                                <label className='' for="pizza-quantity">Quantidade:</label>
-                                                <input className='w-1/4 px-2' type="number" id="pizza-quantity" />
+                                                <label className='p-2 font-bold' for="pizza-quantity">Quantidade:</label>
+                                                <input className='w-1/6 px-2 rounded-md focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]' type="number" id="pizza-quantity" />
                                                 </div>
                                             </div>
 
-                                            <div className='flex justify-center items-center p-2'>
-                                            <button className='w-full p-2  bg-gray-200  rounded-full text-base hover:bg-[#B5121B] hover:text-white active:bg-[#B5121B] focus:outline-none focus:ring focus:ring-[#e47e83] '>Adicionar ao Carrinho</button>
+                                            <div className='flex justify-center items-center p-2 '>
+                                            <button className='w-full p-2  bg-gray-200  rounded-full text-xl hover:bg-[#B5121B] hover:text-white active:bg-[#B5121B] focus:outline-none focus:ring focus:ring-[#e47e83] '>Adicionar ao Carrinho</button>
                                             </div>
                                         </div>
 
@@ -205,8 +207,8 @@ const Main = () => {
                         </div>
                     </>
                 ) : (
-                    <div className='w-full h-32 font-sans font-semibold text-xl flex justify-center items-center'>
-                        <h1>Nenhum item encontrado</h1>
+                    <div className='w-full h-screen font-sans font-semibold text-4xl flex justify-center items-center text-white'>
+                        <h1>Nenhum item encontrado 😢</h1>
                     </div>
                 )}
 
