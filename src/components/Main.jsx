@@ -10,6 +10,7 @@ import foto5 from '../assets/foto5.jpg'
 import foto6 from '../assets/foto6.jpg'
 import foto7 from '../assets/foto7.jpg'
 import foto8 from '../assets/foto8.jpg'
+import { ImageWithDefaultSize } from './ImageWithDefaultSize';
 
 
 const Main = () => {
@@ -109,7 +110,7 @@ const Main = () => {
                             <button onClick={() => searchHandler()}><CiSearch /></button>
                         </div>
                     </div>
-                    <div className="categories  hidden bg-white sm:w-full sm:flex sm:justify-between sm:space-x-8 px-2 py-10">
+                    {/* <div className="categories  hidden bg-white sm:w-full sm:flex sm:justify-between sm:space-x-8 px-2 py-10">
                         <div className='bg-black text-white px-5 py-2 rounded-full drop-shadow-xl'>
                             <p>Watches</p>
                         </div>
@@ -152,29 +153,51 @@ const Main = () => {
                         <div className='bg-white border px-4 py-2 rounded-full drop-shadow-xl'>
                             <p>Mouses</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 {filteredProducts.length ? (
                     <>
-                        <div className="products grid grid-cols-1 gap-9 sm:grid-cols-3 xl:grid-cols-5 lg:grid-cols-3 sm:gap-9 sm:p-4 z-20 ">
+                        <div className="products grid grid-cols-1 gap-9 sm:grid-cols-3 xl:grid-cols-4 lg:grid-cols-3 sm:gap-9 sm:p-4 z-20 ">
                             {filteredProducts && filteredProducts.map((product, idx) => {
                                 return (
-                                    <div key={idx} className="product  sm:h-[320px] sm:drop-shadow-2xl border rounded-t-xl rounded-b-md border-none">
+                                    <div key={idx} className="product  h-full drop-shadow-2xl border rounded-t-xl rounded-b-md border-none">
                                         <div className='flex justify-center items-center'>
-                                            <img src={product.img} alt="" className='w-full h-[60%]  object-cover rounded-t-xl' />
+                                            <ImageWithDefaultSize src={product.img} className='rounded-t-xl' />
+                                            {/* <img src={product.img} alt="" className='w-full h-full  object-cover rounded-t-xl' /> */}
                                         </div>
                                         <div className='flex-col leading-loose bg-gray-100  p-4 rounded-b-xl overflow-hidden '>
                                             <h1 className='text-xl text-[#B5121B] font-semibold'>{product.title}</h1>
                                             <p className=' text-sm text-[#B5121B]'>{product.description}</p>
                                             <div className='flex justify-between items-center'>
-                                                <p className='text-xl font-bold text-[#B5121B]'>R${product.price}.00</p>
+                                                <p className='text-xl font-bold text-[#B5121B]'>R$ {product.price}.00</p>
 
                                                 <button onClick={() => handleBuy(product.title)}>
 
-                                                    <IoLogoWhatsapp size={'1.4rem'} fill='#25D366'/>
+                                                    <IoLogoWhatsapp size={'1.4rem'} fill='#25D366' />
                                                 </button>
                                             </div>
+                                            
+                                            <div className="flex flex-col justify-start items-start py-2 gap-4 font-sans">
+                                                <div className='flex gap-4'>
+                                                <label for="pizza-size">Tamanho:</label>
+                                                <select id="pizza-size">
+                                                    <option value="pequena">Pequena</option>
+                                                    <option value="media">Média</option>
+                                                    <option value="grande">Grande</option>
+                                                    <option value="familia">Família</option>
+                                                </select>
+                                                </div>
+                                                <div className='flex gap-4'>
+                                                <label className='' for="pizza-quantity">Quantidade:</label>
+                                                <input className='w-1/4 px-2' type="number" id="pizza-quantity" />
+                                                </div>
+                                            </div>
+
+                                            <div className='flex justify-center items-center p-2'>
+                                            <button className='w-full p-2  bg-gray-200  rounded-full text-base hover:bg-[#B5121B] hover:text-white active:bg-[#B5121B] focus:outline-none focus:ring focus:ring-[#e47e83] '>Adicionar ao Carrinho</button>
+                                            </div>
                                         </div>
+
                                     </div>
                                 )
                             })}
