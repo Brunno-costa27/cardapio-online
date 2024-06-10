@@ -72,8 +72,9 @@ const Main = () => {
         console.log(product)
 
         // const message = `Olá, gostaria de comprar o seguinte produto: ${product}`;
-        const message = `Olá! Gostaria de fazer um pedido.
-         Aqui está o produto que desejo:
+        const message = `
+        Olá! Gostaria de fazer um pedido.
+        Aqui está o produto que desejo:
         🍕 Produto: ${product.title};
         📝 Descrição: ${product.description};
         🔢 Quantidade: ${product.quantity};
