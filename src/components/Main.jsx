@@ -85,7 +85,7 @@ const Main = () => {
         
         😊 Muito obrigado!`
         ;
-        const phone = '5584996492087'; // Coloque o número de telefone do estabelecimento aqui
+        const phone = '5584999828526'; // Coloque o número de telefone do estabelecimento aqui
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     };
