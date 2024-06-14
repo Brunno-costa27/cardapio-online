@@ -171,7 +171,7 @@ const Main = ({products}) => {
                         </div>
                     </>
                 ) : (
-                    <div className='w-full h-screen font-sans font-semibold text-4xl flex justify-center items-center text-white'>
+                    <div className='w-full h-screen font-semibold text-4xl flex justify-center items-center text-white'>
                         <h1>Nenhum item encontrado 😢</h1>
                     </div>
                 )}

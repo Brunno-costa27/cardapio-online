@@ -2,19 +2,16 @@ import React, { useState, useRef } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { IoLogoWhatsapp } from "react-icons/io";
 import Sidebar from './Sidebar';
-import foto1 from '../assets/foto1.jpg'
-import foto2 from '../assets/foto2.jpg'
-import foto3 from '../assets/foto3.jpg'
-import foto4 from '../assets/foto4.jpg'
-import foto5 from '../assets/foto5.jpg'
-import foto6 from '../assets/foto6.jpg'
-import foto7 from '../assets/foto7.jpg'
-import foto8 from '../assets/foto8.jpg'
 import { ImageWithDefaultSize } from './ImageWithDefaultSize';
 import Modal from 'react-modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export function Card({ products }) {
+
+    const notify = () => toast("Wow so easy !");
 
     const ArrayProducts = [products]
 
@@ -75,14 +72,19 @@ export function Card({ products }) {
         };
         handleBuy(item)
         console.log(item);
+
     }
 
     const openModal = () => {
         setModalIsOpen(true);
+        if (quantity === undefined || quantity === '') {
+            notify()
+        }
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
+        setQuantity('')
     };
     const [filteredProducts, setFilteredProducts] = useState(products)
     const inputRef = useRef(null);
@@ -120,16 +122,12 @@ export function Card({ products }) {
                             <div className='flex justify-between items-center'>
                                 <p className='text-xl font-bold text-[#B5121B]'>R$ {product.price}.00</p>
 
-                                {/* <button onClick={() => handleBuy(product.title)}>
-
-                                                    <IoLogoWhatsapp size={'1.4rem'} fill='#25D366' />
-                                                </button> */}
                             </div>
 
-                            <div className="flex flex-col py-2 gap-4 font-sans text-xl">
+                            <div className="flex flex-col py-2 gap-4 text-xl">
                                 <div className='flex gap-4 justify-between'>
                                     <label className='text-center flex justify-center items-center font-bold' htmlFor="pizza-size">Tamanho:</label>
-                                    <select className='p-2' id="pizza-size " value={size} onChange={handleSizeChange}>
+                                    <select className='p-2 rounded-md border border-[#B5121B]' id="pizza-size " value={size} onChange={handleSizeChange}>
                                         <option value="pequena">Pequena</option>
                                         <option value="media">Média</option>
                                         <option value="grande">Grande</option>
@@ -139,11 +137,23 @@ export function Card({ products }) {
                                 <div className='flex gap-4 justify-between'>
                                     <label className='py-2 font-bold' htmlFor="pizza-quantity">Quantidade:</label>
                                     <input
-                                        className='w-1/6 px-2 rounded-md focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]'
-                                        type="number" id="pizza-quantity"
+                                        className='w-10 px-2 rounded-md border border-[#B5121B] focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]'
+                                        type="text" placeholder='0' id="pizza-quantity"
                                         value={quantity}
                                         onChange={handleQuantityChange} />
                                 </div>
+
+                                {
+                                    quantity === undefined ?
+                                        <>
+                                            <ToastContainer />
+                                        </>
+                                        : quantity === '' ?
+                                        <>
+                                             <ToastContainer />
+                                        </>
+                                        : ""
+                                }
                             </div>
 
                             <div className='flex justify-center items-center p-2 '>
@@ -164,7 +174,7 @@ export function Card({ products }) {
                         className="fixed inset-0 flex items-center justify-center p-4 bg-opacity-75"
                         overlayClassName="fixed inset-0 bg-opacity-50"
                     >
-                        <div className="bg-white rounded-lg p-6 max-w-xl mx-auto flex flex-col">
+                        <div className="w-full bg-white rounded-lg p-6 max-w-xl mx-auto flex flex-col">
                             <h2 className="text-2xl font-bold mb-4">📝 Pedido</h2>
                             <p className="mb-4">Deseja enviar o pedido?</p>
                             <ol className='flex flex-col px-2'>
@@ -173,12 +183,12 @@ export function Card({ products }) {
                                 <li>✅ Titulo: {product.title}</li>
                                 <li>✅ Preço: {product.price}</li>
                             </ol>
-                            <div className='flex justify-center items-center gap-6 mt-4'>
-                                <button onClick={closeModal} className="px-4 py-2 bg-red-500 text-white rounded">
-                                    Fechar
-                                </button>
-                                <button onClick={() => (addToCart(product))} className="px-4 py-2 bg-red-500 text-white rounded">
+                            <div className='flex flex-col justify-end sm:flex-row sm:justify-between items-center gap-6 mt-4'>
+                                <button onClick={() => (addToCart(product))} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
                                     Enviar
+                                </button>
+                                <button onClick={closeModal} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
+                                    Fechar
                                 </button>
                             </div>
                         </div>

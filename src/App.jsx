@@ -28,25 +28,25 @@ function App() {
   const Products = [
     {
         img: foto1,
-        title: 'Frango com catupiry',
+        title: 'Pizza',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 20
     },
     {
         img: foto2,
-        title: 'Frango com catupiry',
+        title: 'Carne',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 50
     },
     {
         img: foto3,
-        title: "Frango com catupiry",
+        title: "Frango",
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 90
     },
     {
         img: foto4,
-        title: 'Frango com catupiry',
+        title: 'Moda da casa',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 30
     },
@@ -58,19 +58,19 @@ function App() {
     },
     {
         img: foto6,
-        title: 'Frango com catupiry',
+        title: '4 queijos',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 80
     },
     {
         img: foto7,
-        title: 'Frango com catupiry',
+        title: 'Muçarela',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 40
     },
     {
         img: foto8,
-        title: 'Frango com catupiry',
+        title: 'Chocolate',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 40
     },
