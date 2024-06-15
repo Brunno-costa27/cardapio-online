@@ -31,48 +31,56 @@ function App() {
         title: 'Pizza',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 20
+
     },
     {
         img: foto2,
         title: 'Carne',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 50
+
     },
     {
         img: foto3,
         title: "Frango",
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 90
+
     },
     {
         img: foto4,
         title: 'Moda da casa',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 30
+
     },
     {
         img: foto5,
         title: 'Frango com catupiry',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 99
+        
     },
     {
         img: foto6,
         title: '4 queijos',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 80
+
     },
     {
         img: foto7,
         title: 'Muçarela',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 40
+
     },
     {
         img: foto8,
         title: 'Chocolate',
         description: 'Molho de tomate italiano, Catupiry e orégano.',
         price: 40
+
     },
 
 ]

@@ -8,13 +8,13 @@ import Modal from 'react-modal';
 import { Card } from './Card';
 
 
-const Main = ({products}) => {
+const Main = ({ products }) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
 
-    
+
 
     const handleBuy = (product) => {
         // console.log(product)
@@ -60,8 +60,6 @@ const Main = ({products}) => {
     const addToCart = (product) => {
         const item = {
             ...product,
-            size,
-            quantity,
         };
         // handleBuy(item)
         console.log(product);
@@ -161,9 +159,7 @@ const Main = ({products}) => {
                             {filteredProducts && filteredProducts.map((product) => {
                                 return (
                                     <>
-                                        <Card  products={product}/>
-
-                                        
+                                        <Card products={product} />
                                     </>
                                 )
                             })}

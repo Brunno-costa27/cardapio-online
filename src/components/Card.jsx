@@ -11,7 +11,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function Card({ products }) {
 
-    const notify = () => toast("Wow so easy !");
+    // console.log(products);
+
+    const notify = () => toast.error(`O campo quantidade  não pode ser ${quantity}`, {
+        position: 'top-center'
+    });
 
     const ArrayProducts = [products]
 
@@ -47,44 +51,44 @@ export function Card({ products }) {
 
 
 
-    const [size, setSize] = useState('pequena');
-    const [quantity, setQuantity] = useState();
-    const [title, setTitle] = useState("");
-
-
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-    };
+    const [size, setSize] = useState('Pequena');
+    const [quantity, setQuantity] = useState(1);
 
     const handleSizeChange = (event) => {
         setSize(event.target.value);
     };
 
     const handleQuantityChange = (event) => {
+        console.log();
+        
         setQuantity(parseInt(event.target.value));
+        
     };
 
     const addToCart = (product) => {
         const item = {
             ...product,
             size,
-            quantity,
+            quantity
         };
         handleBuy(item)
-        console.log(item);
 
     }
 
     const openModal = () => {
-        setModalIsOpen(true);
-        if (quantity === undefined || quantity === '') {
+        console.log(quantity);
+        
+        if(quantity > 0){
+            setModalIsOpen(true);
+        }else {
+            setQuantity(0)
             notify()
         }
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
-        setQuantity('')
+        setQuantity(1)
     };
     const [filteredProducts, setFilteredProducts] = useState(products)
     const inputRef = useRef(null);
@@ -137,24 +141,13 @@ export function Card({ products }) {
                                 <div className='flex gap-4 justify-between'>
                                     <label className='py-2 font-bold' htmlFor="pizza-quantity">Quantidade:</label>
                                     <input
-                                        className='w-10 px-2 rounded-md border border-[#B5121B] focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]'
-                                        type="text" placeholder='0' id="pizza-quantity"
+                                        className='w-16 px-2 rounded-md border border-[#B5121B] focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]'
+                                        type="number" placeholder='0' id="pizza-quantity"
                                         value={quantity}
                                         onChange={handleQuantityChange} />
                                 </div>
-
-                                {
-                                    quantity === undefined ?
-                                        <>
-                                            <ToastContainer />
-                                        </>
-                                        : quantity === '' ?
-                                        <>
-                                             <ToastContainer />
-                                        </>
-                                        : ""
-                                }
                             </div>
+                              
 
                             <div className='flex justify-center items-center p-2 '>
                                 <button
@@ -163,36 +156,58 @@ export function Card({ products }) {
                                     Finalizar pedido
                                 </button>
                             </div>
+
                         </div>
 
                     </div>
 
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        contentLabel="Enviar o pedido?"
-                        className="fixed inset-0 flex items-center justify-center p-4 bg-opacity-75"
-                        overlayClassName="fixed inset-0 bg-opacity-50"
-                    >
-                        <div className="w-full bg-white rounded-lg p-6 max-w-xl mx-auto flex flex-col">
-                            <h2 className="text-2xl font-bold mb-4">📝 Pedido</h2>
-                            <p className="mb-4">Deseja enviar o pedido?</p>
-                            <ol className='flex flex-col px-2'>
-                                <li>✅ Quantidade: {quantity}</li>
-                                <li>✅ Tamanho: {size}</li>
-                                <li>✅ Titulo: {product.title}</li>
-                                <li>✅ Preço: {product.price}</li>
-                            </ol>
-                            <div className='flex flex-col justify-end sm:flex-row sm:justify-between items-center gap-6 mt-4'>
-                                <button onClick={() => (addToCart(product))} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
-                                    Enviar
-                                </button>
-                                <button onClick={closeModal} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
-                                    Fechar
-                                </button>
-                            </div>
-                        </div>
-                    </Modal>
+                    {
+                        quantity > 0 ?
+                        <>
+                                <Modal
+                                    isOpen={modalIsOpen}
+                                    onRequestClose={closeModal}
+                                    contentLabel="Enviar o pedido?"
+                                    className="w-full fixed inset-0 flex items-center justify-center p-6 bg-opacity-75"
+                                    overlayClassName="fixed inset-0 bg-opacity-50"
+                                >
+                                    <div className="w-full bg-white rounded-lg p-6 max-w-xl mx-auto flex flex-col">
+                                        <h2 className="text-2xl font-bold mb-4">📝 Revisar Pedido</h2>
+                                        <ol className='flex flex-col p-2'>
+                                            <li>✅ Quantidade: {quantity}</li>
+                                            <li>✅ Tamanho: {size}</li>
+                                            <li>✅ Titulo: {product.title}</li>
+                                            <li>✅ Preço: {product.price}</li>
+                                        </ol>
+                                        <p className="mb-4">Deseja enviar o pedido?</p>
+                                        <div className='flex flex-col justify-end sm:flex-row sm:justify-between items-center gap-6 '>
+                                            <button onClick={() => (addToCart(product))} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
+                                                Enviar
+                                            </button>
+                                            <button onClick={closeModal} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
+                                                Fechar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </Modal>
+                            </>
+                            : ""
+                            
+                            
+                            
+                    }
+
+                    {
+                        quantity == 0 ?
+                            <>
+                                {/* <div className='fixed inset-0 flex items-center justify-center p-4 bg-opacity-75'> */}
+                                <ToastContainer className='mt-24 gap-2 sm:w-1/2 sm:p-4 fixed flex flex-col items-center justify-center' />
+                                {/* </div> */}
+                            </>
+                            : ""
+                    }
+
+
                 </>
 
             )
