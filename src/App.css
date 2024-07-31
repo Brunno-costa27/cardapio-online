@@ -1,3 +1,22 @@
 body {
     font-family: sans-serif;
 }
+
+/* styles.css ou diretamente no arquivo do componente */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px; /* Largura da scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #ffffff; /* Cor de fundo da trilha da scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #fffefe; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #ffffff; /* Cor da barra quando o usuário passa o mouse sobre ela */
+  }
+  

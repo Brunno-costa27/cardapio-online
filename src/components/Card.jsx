@@ -1,12 +1,14 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { CiSearch } from 'react-icons/ci'
-import { IoLogoWhatsapp } from "react-icons/io";
+import { IoAdd } from "react-icons/io5";
 import Sidebar from './Sidebar';
 import { ImageWithDefaultSize } from './ImageWithDefaultSize';
 import Modal from 'react-modal';
 import { ToastContainer, toast } from 'react-toastify';
+import { Oval } from 'react-loader-spinner';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ProductImage from './ProducImage';
+import ProductModal from './ProducModal';
 
 
 export function Card({ products }) {
@@ -22,8 +24,29 @@ export function Card({ products }) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+    // const [images, setImages] = useState([]);
 
 
+    // useEffect(() => {
+    //     const fetchImages = async () => {
+    //         // Ajuste a URL conforme necessário se você tiver um endpoint para listar as imagens
+    //         const response = await axios.get('http://localhost:3001/uploads');
+    //         // Para fins de simplicidade, assumimos que a resposta contém uma lista de nomes de arquivos
+    //         console.log()
+    //         setImages(response.data);
+    //     };
+
+    //     fetchImages();
+    // }, []);
 
 
 
@@ -60,9 +83,9 @@ export function Card({ products }) {
 
     const handleQuantityChange = (event) => {
         console.log();
-        
+
         setQuantity(parseInt(event.target.value));
-        
+
     };
 
     const addToCart = (product) => {
@@ -77,10 +100,10 @@ export function Card({ products }) {
 
     const openModal = () => {
         console.log(quantity);
-        
-        if(quantity > 0){
+
+        if (quantity > 0) {
             setModalIsOpen(true);
-        }else {
+        } else {
             setQuantity(0)
             notify()
         }
@@ -109,108 +132,45 @@ export function Card({ products }) {
         }
     }
 
+    console.log(ArrayProducts[0].img)
+
     return (
 
         ArrayProducts.map(product => {
 
-            return (
-                <>
-                    <div className="product  h-full drop-shadow-2xl border rounded-t-xl rounded-b-md border-none">
-                        <div className='flex justify-center items-center'>
-                            <ImageWithDefaultSize src={product.img} className='rounded-t-xl' />
-                            {/* <img src={product.img} alt="" className='w-full h-full  object-cover rounded-t-xl' /> */}
-                        </div>
-                        <div className='flex-col leading-loose bg-gray-100  p-4 rounded-b-xl overflow-hidden '>
-                            <h1 className='text-xl text-[#B5121B] font-semibold' >{product.title}</h1>
-                            <p className=' text-sm text-[#B5121B]'>{product.description}</p>
-                            <div className='flex justify-between items-center'>
-                                <p className='text-xl font-bold text-[#B5121B]'>R$ {product.price}.00</p>
-
-                            </div>
-
-                            <div className="flex flex-col py-2 gap-4 text-xl">
-                                <div className='flex gap-4 justify-between'>
-                                    <label className='text-center flex justify-center items-center font-bold' htmlFor="pizza-size">Tamanho:</label>
-                                    <select className='p-2 rounded-md border border-[#B5121B]' id="pizza-size " value={size} onChange={handleSizeChange}>
-                                        <option value="pequena">Pequena</option>
-                                        <option value="media">Média</option>
-                                        <option value="grande">Grande</option>
-                                        <option value="familia">Família</option>
-                                    </select>
-                                </div>
-                                <div className='flex gap-4 justify-between'>
-                                    <label className='py-2 font-bold' htmlFor="pizza-quantity">Quantidade:</label>
-                                    <input
-                                        className='w-16 px-2 rounded-md border border-[#B5121B] focus:border-[#B5121B] focus:outline-none focus:ring-2 focus:ring-[#B5121B]'
-                                        type="number" placeholder='0' id="pizza-quantity"
-                                        value={quantity}
-                                        onChange={handleQuantityChange} />
-                                </div>
-                            </div>
-                              
-
-                            <div className='flex justify-center items-center p-2 '>
-                                <button
-                                    onClick={() => openModal()}
-                                    className='w-full p-2  bg-gray-200  rounded-full text-xl hover:bg-[#B5121B] hover:text-white active:bg-[#B5121B] focus:outline-none focus:ring focus:ring-[#e47e83] '>
-                                    Finalizar pedido
-                                </button>
-                            </div>
-
-                        </div>
-
+        return (
+        <>
+            <div className="w-full flex justify-between items-center p-4 bg-[#F5F5F5] shadow-md rounded-lg relative border border-[#E0E0E0]">
+                {/* Descrição */}
+                <div className="flex-1">
+                    <div className="text-base sm:text-lg md:text-xl lg:text-xl font-semibold font-raleway text-[#212121] tracking-tighter">{product.title}</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-600 font-opensans">{product.description}</div>
+                    <div className="text-base sm:text-lg md:text-xl lg:text-xl font-bold mt-2 font-opensans text-[#212121]">R$ {product.price},00</div>
+                    {/* static */}
+                    <div className="flex items-center mt-1">
+                        <div className="text-xs sm:text-sm  bg-green-600 text-white font-medium px-1 py-[2px]  rounded-md">-2%</div>
+                        <div className="text-xs sm:text-sm  text-gray-400 line-through ml-2">R$ 78,96</div>
                     </div>
+                </div>
+                {/* Imagem */}
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 ml-0 sm:ml-4 relative">
+                    <ProductImage
+                        img={product.img}
+                    />
+                </div>
+                {/* Ícone */}
+                <div
+                    onClick={handleOpenModal}
+                    className="absolute bottom-2 right-2  bg-[#FFC107] text-white cursor-pointer rounded-full p-1 sm:p-2">
+                    <IoAdd size={24} />
+                </div>
 
-                    {
-                        quantity > 0 ?
-                        <>
-                                <Modal
-                                    isOpen={modalIsOpen}
-                                    onRequestClose={closeModal}
-                                    contentLabel="Enviar o pedido?"
-                                    className="w-full fixed inset-0 flex items-center justify-center p-6 bg-opacity-75"
-                                    overlayClassName="fixed inset-0 bg-opacity-50"
-                                >
-                                    <div className="w-full bg-white rounded-lg p-6 max-w-xl mx-auto flex flex-col">
-                                        <h2 className="text-2xl font-bold mb-4">📝 Revisar Pedido</h2>
-                                        <ol className='flex flex-col p-2'>
-                                            <li>✅ Quantidade: {quantity}</li>
-                                            <li>✅ Tamanho: {size}</li>
-                                            <li>✅ Titulo: {product.title}</li>
-                                            <li>✅ Preço: {product.price}</li>
-                                        </ol>
-                                        <p className="mb-4">Deseja enviar o pedido?</p>
-                                        <div className='flex flex-col justify-end sm:flex-row sm:justify-between items-center gap-6 '>
-                                            <button onClick={() => (addToCart(product))} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
-                                                Enviar
-                                            </button>
-                                            <button onClick={closeModal} className="w-full px-4 py-2 bg-red-500 text-white rounded-full">
-                                                Fechar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </Modal>
-                            </>
-                            : ""
-                            
-                            
-                            
-                    }
+                 {/* Modal */}
+                <ProductModal show={showModal} onClose={handleCloseModal} product={products} /> 
+            </div>
+        </>
 
-                    {
-                        quantity == 0 ?
-                            <>
-                                {/* <div className='fixed inset-0 flex items-center justify-center p-4 bg-opacity-75'> */}
-                                <ToastContainer className='mt-24 gap-2 sm:w-1/2 sm:p-4 fixed flex flex-col items-center justify-center' />
-                                {/* </div> */}
-                            </>
-                            : ""
-                    }
-
-
-                </>
-
-            )
+        )
 
         })
 

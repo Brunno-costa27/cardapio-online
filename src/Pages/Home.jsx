@@ -5,7 +5,7 @@ export function Home({products}) {
   return (
     <div>
         <Sidebar />
-      <div className='w-full p-2 bg-[#9E0000]' >
+      <div className='w-full h-full sm:h-screen p-2' >
         <Main products={products}/>
       </div>
     </div>

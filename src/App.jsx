@@ -1,119 +1,94 @@
-import { Home } from './Pages/Home'
+import {Home} from './Pages/Home'
 import {Cart} from './Pages/Cart'
 import {Favorites} from './Pages/Favorites'
 import {Order} from './Pages/Order'
-import foto1 from './assets/foto1.jpg'
-import foto2 from './assets/foto2.jpg'
-import foto3 from './assets/foto3.jpg'
-import foto4 from './assets/foto4.jpg'
-import foto5 from './assets/foto5.jpg'
-import foto6 from './assets/foto6.jpg'
-import foto7 from './assets/foto7.jpg'
-import foto8 from './assets/foto8.jpg'
+import Layout from './Pages/Layout'
 
-//side bar
-import Sidebar from './components/Sidebar'
-//react router dom
-import {
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
-  Outlet,
-  Route
-}from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route}from 'react-router-dom'
 function App() {
-
-  console.log(foto1)
-
+  
   const Products = [
     {
-        img: foto1,
-        title: 'Pizza',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 20
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/pizza01.jpg',
+      title: 'FRANGO COM CATUPIRY',
+      description: 'Molho, frango, catupiry, cebola, tomate, azeitonas e orégano',
+      price: 20,
 
     },
     {
-        img: foto2,
-        title: 'Carne',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 50
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/pizza02.jpg',
+      title: 'FRANGO COM CHEDDAR',
+      description: 'Molho, frango, cheddar, cebola, tomate, azeitonas e orégano',
+      price: 50,
+
 
     },
     {
-        img: foto3,
-        title: "Frango",
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 90
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/pizza03.jpg',
+      title: "FRANGO COM MUSSARELA",
+      description: 'Molho, frango, mussarela, cebola, tomate, azeitonas e orégano',
+      price: 90,
 
     },
     {
-        img: foto4,
-        title: 'Moda da casa',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 30
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/pizza04.jpg',
+      title: 'FRANGO COM BACON',
+      description: 'Molho, frango, mussarela, bacon, milho, cebola, tomate, azeitonas e orégano',
+      price: 30,
 
     },
     {
-        img: foto5,
-        title: 'Frango com catupiry',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 99
-        
-    },
-    {
-        img: foto6,
-        title: '4 queijos',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 80
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/pizza05.jpg',
+      title: 'FRANGO COM 3 QUEIJOS',
+      description: 'Molho, frango, mussarela, catupiry, cheddar, cebola, azeitonas e orégano',
+      price: 99,
 
     },
     {
-        img: foto7,
-        title: 'Muçarela',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 40
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/guarana.png',
+      title: 'GUARANÁ ANTARCTICA',
+      description: ' 1L',
+      price: 8,
 
     },
     {
-        img: foto8,
-        title: 'Chocolate',
-        description: 'Molho de tomate italiano, Catupiry e orégano.',
-        price: 40
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/guarana.png',
+      title: 'GUARANÁ ANTARCTICA',
+      description: ' 2L',
+      price: 12,
 
     },
+    {
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/coca-cola.png',
+      title: 'COCA COLA',
+      description: '2L',
+      price: 12,
 
-]
+    },
+    {
+      img: 'https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads/coca-cola.png',
+      title: 'COCA COLA',
+      description: '1L',
+      price: 8,
+
+    },
+  ]
 
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<Root/>}>
-        <Route index element={<Home products={Products}/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/favs' element={<Favorites/>}/>
-        <Route path='/orders' element={<Order/>}/>
-      </Route>
-    )
-  )
   return (
-    <div className="">
-     <RouterProvider router={router}/>
-    </div>
+    <Router>
+        <div className=''>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home products={Products} />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/order" element={<Order />} />
+            </Route>
+          </Routes>
+        </div>
+    </Router>
   )
 }
 
 export default App
-const Root = ()=>{
-  return(
-    <>
-    <div className=''>
-      <Sidebar/>
-    </div>
-    <div>
-      <Outlet/>
-    </div>
-    </>
-    
-  )
-}
