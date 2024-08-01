@@ -12,6 +12,7 @@ const ImageGallery = () => {
     const fetchImages = async () => {
       // Ajuste a URL conforme necessário se você tiver um endpoint para listar as imagens
       const response = await axios.get('https://img-server-f74pbyhav-brunnocosta27s-projects.vercel.app/uploads');
+      console.log(response)
       // Para fins de simplicidade, assumimos que a resposta contém uma lista de nomes de arquivos
       setImages(response.data);
     };
@@ -19,7 +20,6 @@ const ImageGallery = () => {
     fetchImages();
   }, []);
 
-  console.log(images)
 
   return (
     <div>

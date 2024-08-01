@@ -13,7 +13,6 @@ import ProductModal from './ProducModal';
 
 export function Card({ products }) {
 
-    // console.log(products);
 
     const notify = () => toast.error(`O campo quantidade  não pode ser ${quantity}`, {
         position: 'top-center'
@@ -132,7 +131,7 @@ export function Card({ products }) {
         }
     }
 
-    console.log(ArrayProducts[0].img)
+    
 
     return (
 

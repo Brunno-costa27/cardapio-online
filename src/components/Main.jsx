@@ -10,7 +10,6 @@ const Main = ({ products }) => {
     const [quantity, setQuantity] = useState();
     // const [title, setTitle] = useState("");
 
-    console.log(products);
     // const handleTitleChange = (event) => {
     //     setTitle(event.target.value);
     // };
@@ -29,7 +28,6 @@ const Main = ({ products }) => {
             ...product,
         };
         // handleBuy(item)
-        console.log(product);
     }
 
     const openModal = () => {

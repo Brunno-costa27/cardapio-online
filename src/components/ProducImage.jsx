@@ -15,7 +15,6 @@ const ProductImage = ({ img }) => {
         setError(true);
     };
 
-    console.log(error)
 
     return (
         <>
