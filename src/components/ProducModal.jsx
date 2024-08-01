@@ -58,7 +58,7 @@ const ProductModal = ({ show, onClose, product }) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 font-roboto">
             {/* Container */}
-            <div className="bg-white flex flex-col justify-between rounded-lg overflow-y-auto w-11/12 max-w-4xl h-auto h-[70%] lg:h-[80%] min-h-[40%]">
+            <div className="bg-white flex flex-col justify-between rounded-lg overflow-y-auto w-11/12 max-w-4xl h-[70%] lg:h-[80%] min-h-[40%]">
                 <div className="flex-1 overflow-y-auto">
                     {/* Header */}
                     <div className="p-4 flex justify-between items-center border-b">
