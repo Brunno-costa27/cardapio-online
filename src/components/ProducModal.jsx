@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import Button from './Button';
@@ -10,7 +10,8 @@ import ProductImage from './ProducImage';
 const ProductModal = ({ show, onClose, product }) => {
     const [selectedFlavors, setSelectedFlavors] = useState([]);
     const [count, setCount] = useState(1);
-    const { addToCart, cart } = useCart()
+    const { addToCart } = useCart();
+    const [notes, setNotes] = useState('');
 
     const pizzaFlavors = [
         'FRANGO COM CATUPIRY Molho, frango, catupiry, cebola, tomate, azeitonas e orégano',
@@ -31,7 +32,6 @@ const ProductModal = ({ show, onClose, product }) => {
         }
     };
 
-
     if (!show) return null;
 
     const handleAdd = () => {
@@ -45,50 +45,45 @@ const ProductModal = ({ show, onClose, product }) => {
     };
 
     const handleAddToCart = () => {
-        addToCart({ ...product, count });
+        addToCart({ ...product, count, notes });
         onClose();
     };
 
     const getTotalPrice = () => {
-        return product.price * count
+        return product.price * count;
     };
-
 
     const isDrink = product.title === 'GUARANÁ ANTARCTICA' || product.title === 'COCA COLA';
 
+    const handleNotesChange = (event) => {
+        setNotes(event.target.value);
+    };
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 font-roboto">
-            {/* Container */}
             <div className="bg-white flex flex-col justify-between rounded-lg overflow-y-auto w-11/12 max-w-4xl h-[70%] lg:h-[80%] min-h-[40%]">
                 <div className="flex-1 overflow-y-auto">
-                    {/* Header */}
                     <div className="p-4 flex justify-between items-center border-b">
                         <h2 className="text-lg sm:text-xl font-semibold text-[#212121]">Detalhes do Produto</h2>
                         <button onClick={onClose} className="text-red-500">
                             <IoClose size={30} />
                         </button>
                     </div>
-                    {/* Content */}
                     <div className="flex flex-col lg:flex-row">
-                        {/* Img */}
                         <div className="lg:w-1/2 p-4">
                             <ProductImage
-                                img={product.img}  className="w-full object-cover max-h-60 lg:max-h-96 rounded-md"
+                                img={product.img}
+                                className="w-full object-cover max-h-60 lg:max-h-96 rounded-md"
                             />
-                            {/* <img src={product.img} alt={product.title} className="w-full h-full object-cover max-h-60 lg:max-h-96 rounded-md" /> */}
                         </div>
-                        {/* Content do lado esquerdo */}
                         <div className="lg:w-1/2 p-4 overflow-y-auto">
-                            {/* Objeto do click */}
                             <h3 className="text-lg sm:text-xl font-semibold text-[#212121]">{product.title}</h3>
                             <p className="text-sm sm:text-base text-gray-600 font-opensans">{product.description}</p>
                             <p className="text-lg sm:text-xl font-bold mt-2 text-[#212121] font-opensans">R$ {product.price}</p>
-                            {/* Estático */}
                             <div className="flex items-center mt-1">
                                 <div className="text-xs sm:text-sm bg-green-600 text-white font-medium px-1 py-[2px] rounded-md">-2%</div>
                                 <div className="text-xs sm:text-sm text-gray-400 line-through ml-2">R$ 78,96</div>
                             </div>
-                            {/* Content esquerdo */}
                             {!isDrink && (
                                 <div className="mb-4 mt-4 text-[#212121]">
                                     {pizzaFlavors.map(flavor => (
@@ -112,14 +107,17 @@ const ProductModal = ({ show, onClose, product }) => {
                                     ))}
                                 </div>
                             )}
-                            {/* Observações */}
                             <div className='w-full h-full flex mt-4 text-gray-500'>
-                                <textarea className='w-full h-36 px-2 py-4 border rounded-lg focus:outline-none' placeholder='Alguma observação?'></textarea>
+                                <textarea
+                                    className='w-full h-36 px-2 py-4 border rounded-lg focus:outline-none'
+                                    placeholder='Alguma observação?'
+                                    value={notes}
+                                    onChange={handleNotesChange}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* Footer */}
                 <footer className='flex flex-col sm:flex-row justify-between items-center p-4 border-t border-gray-300 text-[#212121]'>
                     <div className="flex items-center gap-2 mb-4 sm:mb-0">
                         <Button
@@ -128,7 +126,6 @@ const ProductModal = ({ show, onClose, product }) => {
                             label=""
                             disabled={count === 1}
                         />
-
                         <div className='px-4 py-2 border border-gray-300 rounded-md'>
                             {count}
                         </div>
@@ -137,7 +134,6 @@ const ProductModal = ({ show, onClose, product }) => {
                             onClick={handleAdd}
                             label=""
                         />
-
                     </div>
                     <button onClick={handleAddToCart} className="bg-[#D32F2F] text-white px-4 py-2 rounded-md">
                         <Link to='/cart'>R$ {getTotalPrice()} | Adicionar</Link>
@@ -145,8 +141,6 @@ const ProductModal = ({ show, onClose, product }) => {
                 </footer>
             </div>
         </div>
-
-
     );
 };
 

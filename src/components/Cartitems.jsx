@@ -101,7 +101,8 @@ const Cartitems = () => {
               </Link>
             </div>
           </div>
-          <div className="w-full lg:w-[40%] h-fit rounded p-5 space-y-5">
+
+          <div className="w-full lg:w-[40%] h-fit rounded space-y-5">
             <div className="flex justify-between items-center border-b border-dashed p-2">
               <h1 className="text-lg sm:text-xl">Total</h1>
               <p>R$ {getTotalPrice()}</p>
