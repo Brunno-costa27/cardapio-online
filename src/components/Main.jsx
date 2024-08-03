@@ -64,7 +64,8 @@ const Main = ({ products }) => {
                         <div className='flex justify-center lg:justify-start items-center'>
                             <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold py-2 lg:py-0 text-center lg:text-left'>🍕 Pizza Shop</h1>
                         </div>
-                        <div className="search mt-4 lg:mt-0 flex justify-center lg:justify-end items-center px-4 py-2 bg-gray-100 rounded">
+
+                        <div className="search mt-4 lg:mt-0 flex justify-between lg:justify-center px-4 items-center w-full lg:w-auto py-2 bg-gray-100 rounded">
                             <input
                                 type="text"
                                 placeholder='Pesquisar produto'
@@ -77,7 +78,7 @@ const Main = ({ products }) => {
                             </button>
                         </div>
                     </div>
-                    <div className="categories hidden sm:flex sm:justify-center lg:justify-center lg:space-x-4 xl:space-x-6 2xl:space-x-8 px-2 py-6 lg:py-8 custom-scrollbar">
+                    <div className="categories hidden lg:flex  lg:justify-center  lg:space-x-4 xl:space-x-6 2xl:space-x-8 px-2 py-6 lg:py-8 custom-scrollbar">
                         <div className='bg-green-600 text-white px-4 py-2 md:px-5 md:py-3 rounded-full drop-shadow-xl hover:opacity-95 cursor-pointer'>
                             <p className='text-sm sm:text-base md:text-lg'>Pizzas</p>
                         </div>

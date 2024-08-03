@@ -154,7 +154,7 @@ export function Card({ products }) {
                 {/* Imagem */}
                 <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 ml-0 sm:ml-4 relative">
                     <ProductImage
-                        img={product.img}
+                        img={product.img} 
                     />
                 </div>
                 {/* Ícone */}

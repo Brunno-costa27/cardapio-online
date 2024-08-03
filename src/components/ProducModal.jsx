@@ -5,6 +5,7 @@ import Button from './Button';
 import { Link } from 'react-router-dom';
 import { RiCheckboxCircleFill, RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { useCart } from '../context/CartContext';
+import ProductImage from './ProducImage';
 
 const ProductModal = ({ show, onClose, product }) => {
     const [selectedFlavors, setSelectedFlavors] = useState([]);
@@ -71,7 +72,10 @@ const ProductModal = ({ show, onClose, product }) => {
                     <div className="flex flex-col lg:flex-row">
                         {/* Img */}
                         <div className="lg:w-1/2 p-4">
-                            <img src={product.img} alt={product.title} className="w-full h-full object-cover max-h-60 lg:max-h-96 rounded-md" />
+                            <ProductImage
+                                img={product.img}  className="w-full object-cover max-h-60 lg:max-h-96 rounded-md"
+                            />
+                            {/* <img src={product.img} alt={product.title} className="w-full h-full object-cover max-h-60 lg:max-h-96 rounded-md" /> */}
                         </div>
                         {/* Content do lado esquerdo */}
                         <div className="lg:w-1/2 p-4 overflow-y-auto">
