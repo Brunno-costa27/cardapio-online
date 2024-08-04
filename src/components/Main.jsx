@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { CiSearch } from 'react-icons/ci';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { Card } from './Card';
 
 const Main = ({ products }) => {
@@ -13,6 +14,7 @@ const Main = ({ products }) => {
   const [quantity, setQuantity] = useState();
   const [filteredProducts, setFilteredProducts] = useState(pizzas);
   const [activeCategory, setActiveCategory] = useState('pizzas');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -52,32 +54,64 @@ const Main = ({ products }) => {
   const selectCategory = (category) => {
     setActiveCategory(category);
     setFilteredProducts(category === 'pizzas' ? pizzas : bebidas);
+    setIsMenuOpen(false); // Fechar o menu após a seleção
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <>
       <main className='w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-12 relative font-roboto flex-grow'>
         <div className='sticky top-0 z-10 bg-[#212121] w-full'>
-          {/* header */}
-          <div className='header w-full px-4 py-4 flex flex-col lg:flex-row lg:justify-between items-center'>
-            <div className='flex justify-center lg:justify-start items-center'>
-              <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold py-2 lg:py-0 text-center lg:text-left'>🍕 Pizza Shop</h1>
-            </div>
+          {/* Hamburger Menu Icon */}
+          <button className='lg:hidden text-white mt-2' onClick={toggleMenu}>
+            <AiOutlineMenu size={24} />
+          </button>
 
-            <div className="search mt-4 lg:mt-0 flex justify-between lg:justify-center px-4 items-center w-full lg:w-auto py-2 bg-gray-100 rounded">
-              <input
-                type="text"
-                placeholder='Pesquisar produto'
-                className='md:w-auto bg-transparent outline-none text-[#212121] px-2 py-1'
-                onChange={searchHandler}
-                ref={inputRef}
-              />
-              <button className='ml-2 text-[#212121]' onClick={() => searchHandler()}>
-                <CiSearch />
-              </button>
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="lg:hidden flex flex-col items-center py-4 bg-[#212121] text-white">
+              <div
+                className={`p-2  cursor-pointer ${activeCategory === 'pizzas' ? 'font-bold text-green-600' : ''}`}
+                onClick={() => selectCategory('pizzas')}
+              >
+                Pizzas
+              </div>
+
+              <div
+                className={`py-2 cursor-pointer ${activeCategory === 'bebidas' ? 'font-bold text-green-600' : ''}`}
+                onClick={() => selectCategory('bebidas')}
+              >
+                Bebidas
+              </div>
             </div>
-          </div>
-          
+          )}
+          {/* header */}
+          {!isMenuOpen && (
+           <div className='header w-full px-4 py-4 flex flex-col lg:flex-row lg:justify-between items-center'>
+           <div className='flex justify-center lg:justify-start items-center'>
+             <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold py-2 lg:py-0 text-center lg:text-left'>🍕 Pizza Shop</h1>
+           </div>
+
+           <div className="search mt-4 lg:mt-0 flex justify-between lg:justify-center px-4 items-center w-full lg:w-auto py-2 bg-gray-100 rounded">
+             <input
+               type="text"
+               placeholder='Pesquisar produto'
+               className='md:w-auto bg-transparent outline-none text-[#212121] px-2 py-1'
+               onChange={searchHandler}
+               ref={inputRef}
+             />
+             <button className='ml-2 text-[#212121]' onClick={() => searchHandler()}>
+               <CiSearch />
+             </button>
+           </div>
+         </div> 
+          )}
+
+
+          {/* Desktop Menu */}
           <div className="categories hidden lg:flex lg:justify-center lg:space-x-4 xl:space-x-6 2xl:space-x-8 px-2 py-6 lg:py-8 custom-scrollbar">
             <div
               className={`px-4 py-2 md:px-5 md:py-3 rounded-full drop-shadow-xl cursor-pointer ${activeCategory === 'pizzas' ? 'bg-green-600 text-white' : 'bg-white text-[#212121] border'}`}
@@ -92,6 +126,7 @@ const Main = ({ products }) => {
               <p className='text-sm sm:text-base md:text-lg'>Bebidas</p>
             </div>
           </div>
+
         </div>
         {/* Cards */}
         {filteredProducts?.length ? (
