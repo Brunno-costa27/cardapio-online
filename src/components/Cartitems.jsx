@@ -29,7 +29,7 @@ const Cartitems = () => {
     `;
 
     const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = "84996492087"; 
+    const phoneNumber = "5584996492087"; 
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
     window.open(whatsappUrl, "_blank");
