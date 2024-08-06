@@ -15,6 +15,26 @@ const Cartitems = () => {
     return cart.reduce((total, item) => total + item.count * item.price, 0).toFixed(2);
   };
 
+  const formatCartItems = () => {
+    return cart.map(item => {
+      return `Produto: ${item.title}\nDescrição: ${item.description}\nQuantidade: ${item.count}\nPreço Unitário: R$ ${item.price}\n`;
+    }).join('\n');
+  };
+
+  const handleWhatsAppMessage = () => {
+    const message = `
+      *Resumo do Pedido*\n
+      ${formatCartItems()}
+      *Total a pagar*: R$ ${getTotalPrice()}\n
+    `;
+
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = "55996492087"; 
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+  };
+
   console.log(cart);
 
   return (
@@ -115,8 +135,12 @@ const Cartitems = () => {
               <h1 className="text-lg sm:text-xl">Total a pagar</h1>
               <p>R$ {getTotalPrice()}</p>
             </div>
-            <button className="w-full font-bold p-4 bg-[#D32F2F] text-center text-white rounded">
-              Confirmar
+            <button
+              onClick={handleWhatsAppMessage} 
+              className="w-full font-bold p-4 bg-[#D32F2F] text-center text-white rounded">
+              <Link to='/'>
+                Confirmar
+              </Link>
             </button>
           </div>
         </section>
