@@ -12,7 +12,7 @@ const Layout = () => {
     const cartItemCount = cart.length
 
     return (
-        <div className='font-sans min-h-screen flex flex-col'>
+        <div className='min-h-screen flex flex-col font-roboto'>
             {/* Main content area */}
             <div className='flex-grow'>
                 <Outlet />

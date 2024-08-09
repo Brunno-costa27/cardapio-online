@@ -3,7 +3,7 @@ import {BsArrowLeft} from 'react-icons/bs'
 import {NavLink} from 'react-router-dom'
 export  function Favorites() {
   return (
-    <div className='w-full h-screen flex justify-center items-center'>
+    <div className='w-full h-screen flex justify-center items-center font-roboto'>
       <div className='space-y-5 flex flex-col justify-center items-center '>
         <h1 className='text-xl font-semibold'>You don't have any favorite products</h1>
         <NavLink to='/'>

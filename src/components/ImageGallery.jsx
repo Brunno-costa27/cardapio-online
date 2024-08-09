@@ -22,7 +22,7 @@ const ImageGallery = () => {
 
 
   return (
-    <div>
+    <div className='font-roboto'>
       {images.length > 0 ? (
       <div>
         {images.map((imageName) => (

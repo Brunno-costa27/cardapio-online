@@ -139,7 +139,7 @@ export function Card({ products }) {
 
         return (
         <>
-            <div className="w-full flex justify-between items-center p-4 bg-[#F5F5F5] shadow-md rounded-lg relative border border-[#E0E0E0]">
+            <div className="font-roboto w-full flex justify-between items-center p-4 bg-[#F5F5F5] shadow-md rounded-lg relative border border-[#E0E0E0]">
                 {/* Descrição */}
                 <div className="flex-1">
                     <div className="text-base sm:text-lg md:text-xl lg:text-xl font-semibold font-raleway text-[#212121] tracking-tighter">{product.title}</div>

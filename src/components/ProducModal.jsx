@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { RiCheckboxCircleFill, RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { useCart } from '../context/CartContext';
 import ProductImage from './ProducImage';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductModal = ({ show, onClose, product }) => {
     const [selectedFlavors, setSelectedFlavors] = useState([]);
@@ -27,7 +29,14 @@ const ProductModal = ({ show, onClose, product }) => {
             if (selectedFlavors.length < 2) {
                 setSelectedFlavors([...selectedFlavors, flavor]);
             } else {
-                alert('Você pode selecionar no máximo 2 sabores.');
+                toast.error('Você pode selecionar no máximo 2 sabores.', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
             }
         }
     };
@@ -60,22 +69,28 @@ const ProductModal = ({ show, onClose, product }) => {
     };
 
     return (
+        <>
+        <ToastContainer className="w-[400px]"/>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 font-roboto">
             <div className="bg-white flex flex-col justify-between rounded-lg overflow-y-auto w-11/12 max-w-4xl h-[70%] lg:h-[80%] min-h-[40%]">
                 <div className="flex-1 overflow-y-auto">
+                    {/* Cabeçalho */}
                     <div className="p-4 flex justify-between items-center border-b">
                         <h2 className="text-lg sm:text-xl font-semibold text-[#212121]">Detalhes do Produto</h2>
                         <button onClick={onClose} className="text-red-500">
                             <IoClose size={30} />
                         </button>
                     </div>
+                    {/* Conteúdo */}
                     <div className="flex flex-col lg:flex-row">
-                        <div className="lg:w-1/2 p-4">
+                        {/* imagem */}
+                        <div className="lg:w-1/2 p-4 h-[100%]">
                             <ProductImage
                                 img={product.img}
                                 className="w-full object-cover max-h-60 lg:max-h-96 rounded-md"
                             />
                         </div>
+                        {/* Conteúdo interno */}
                         <div className="lg:w-1/2 p-4 overflow-y-auto">
                             <h3 className="text-lg sm:text-xl font-semibold text-[#212121]">{product.title}</h3>
                             <p className="text-sm sm:text-base text-gray-600 font-opensans">{product.description}</p>
@@ -85,6 +100,7 @@ const ProductModal = ({ show, onClose, product }) => {
                                 <div className="text-xs sm:text-sm text-gray-400 line-through ml-2">R$ 78,96</div>
                             </div>
                             {!isDrink && (
+                                // Se não for bebidas não aparece essa seção
                                 <div className="mb-4 mt-4 text-[#212121]">
                                     {pizzaFlavors.map(flavor => (
                                         <div key={flavor} className="flex items-center gap-2 py-4 border-b border-gray-300">
@@ -118,6 +134,7 @@ const ProductModal = ({ show, onClose, product }) => {
                         </div>
                     </div>
                 </div>
+                {/* Footer */}
                 <footer className='flex flex-col sm:flex-row justify-between items-center p-4 border-t border-gray-300 text-[#212121]'>
                     <div className="flex items-center gap-2 mb-4 sm:mb-0">
                         <Button
@@ -141,6 +158,7 @@ const ProductModal = ({ show, onClose, product }) => {
                 </footer>
             </div>
         </div>
+        </>
     );
 };
 

@@ -33,7 +33,7 @@ const ImageUpload = () => {
   };
 
   return (
-    <div>
+    <div className='font-roboto'>
       <h2>Upload Image</h2>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload</button>

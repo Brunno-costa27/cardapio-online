@@ -32,7 +32,7 @@ const ProductImage = ({ img }) => {
                     className={`transition-opacity duration-500 w-full h-full object-cover rounded-lg ${loading ? 'opacity-0' : 'opacity-100'}`}
                 />
             ) : (
-                <div className="flex justify-center items-center h-full">
+                <div className="flex justify-center items-center h-full font-roboto">
                     <span className='text-center text-[#212121]'>Imagem não carregada</span>
                 </div>
             )}
