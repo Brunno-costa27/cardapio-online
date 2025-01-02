@@ -69,7 +69,7 @@ const Cartitems = () => {
                     cart.map((item, index) => (
                       <tr
                         key={index}
-                        className="border-dashed border-b flex flex-col sm:table-row"
+                        className="border-b flex flex-col sm:table-row"
                       >
                         <td className="w-full sm:w-[60%] py-5 flex flex-col sm:table-cell">
                           <div className="flex items-start sm:items-center space-x-2 sm:space-x-3 py-2">
@@ -114,7 +114,7 @@ const Cartitems = () => {
             </div>
             <div className="my-5">
               <Link to="/">
-                <button className="flex items-center space-x-3 bg-[#D32F2F] font-semibold rounded p-4 hover:opacity-95 text-white">
+                <button className="w-full flex items-center justify-center space-x-3 bg-[#D32F2F] font-semibold rounded p-4 hover:opacity-95 text-white text-center">
                   <BsArrowLeft />
                   <span>Continue Comprando</span>
                 </button>
@@ -123,11 +123,11 @@ const Cartitems = () => {
           </div>
 
           <div className="w-full lg:w-[40%] h-fit rounded space-y-5">
-            <div className="flex justify-between items-center border-b border-dashed p-2">
+            <div className="flex justify-between items-center border-b  p-2">
               <h1 className="text-lg sm:text-xl">Total</h1>
               <p>R$ {getTotalPrice()}</p>
             </div>
-            <div className="flex justify-between items-center border-b border-dashed p-2">
+            <div className="flex justify-between items-center border-b  p-2">
               <h1 className="text-lg sm:text-xl">Descontos</h1>
               <p>R$ 0,00</p>
             </div>

@@ -142,8 +142,11 @@ export function Card({ products }) {
             <div className="font-roboto w-full flex justify-between items-center p-4 bg-[#F5F5F5] shadow-md rounded-lg relative border border-[#E0E0E0]">
                 {/* Descrição */}
                 <div className="flex-1">
-                    <div className="text-base sm:text-lg md:text-xl lg:text-xl font-semibold font-raleway text-[#212121] tracking-tighter">{product.title}</div>
-                    <div className="text-xs sm:text-sm md:text-base text-gray-600 font-opensans">{product.description}</div>
+                    <div className="text-base sm:text-lg md:text-xl lg:text-xl font-semibold font-raleway text-[#212121] tracking-tighter text-justify">{product.title}
+
+                    </div>
+
+                    <div className="text-xs sm:text-sm md:text-base text-gray-600 font-opensans text-justify mt-2">{product.description}</div>
                     <div className="text-base sm:text-lg md:text-xl lg:text-xl font-bold mt-2 font-opensans text-[#212121]">R$ {product.price},00</div>
                     {/* static */}
                     <div className="flex items-center mt-1">
@@ -160,7 +163,7 @@ export function Card({ products }) {
                 {/* Ícone */}
                 <div
                     onClick={handleOpenModal}
-                    className="absolute bottom-2 right-2  bg-[#FFC107] text-white cursor-pointer rounded-full p-1 sm:p-2">
+                    className="absolute bottom-2 between-lg:mb-5 right-2  bg-[#FFC107] text-white cursor-pointer rounded-full p-1 sm:p-2">
                     <IoAdd size={24} />
                 </div>
 

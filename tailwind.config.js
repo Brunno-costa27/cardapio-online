@@ -20,6 +20,7 @@ export default {
       'lg': '1024px',
       'xl': '1280px',
       '2xl': '1536px',
+      'between-lg': { min: '1280px', max: '1480px'},
       // você pode adicionar outros breakpoints aqui
     },
   },
