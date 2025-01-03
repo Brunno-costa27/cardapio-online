@@ -78,7 +78,7 @@ const Cartitems = () => {
                               alt="Produto"
                               className="w-24 h-24 sm:w-[100px] sm:h-[100px] bg-white rounded object-cover"
                             />
-                            <div className="mt-3 sm:mt-0">
+                            <div className="sm:mt-0">
                               <h1 className="text-lg sm:text-xl font-bold">{item.title}</h1>
                               <p className="text-xs sm:text-sm text-[#616161]">{item.description}</p>
                             </div>

@@ -29,7 +29,7 @@ const ProductModal = ({ show, onClose, product }) => {
             if (selectedFlavors.length < 2) {
                 setSelectedFlavors([...selectedFlavors, flavor]);
             } else {
-                toast.error('Você pode selecionar no máximo 2 sabores.', {
+                toast.error('Só é possível no máximo 2 sabores.', {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: true,
@@ -70,12 +70,12 @@ const ProductModal = ({ show, onClose, product }) => {
 
     return (
         <>
-        <ToastContainer className="w-[400px]"/>
+        <ToastContainer className="w-[390px] p-2 mt-2 sm:w-[400px]"/>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 font-roboto">
             <div className="bg-white flex flex-col justify-between rounded-lg overflow-y-auto w-11/12 max-w-4xl h-[70%] lg:h-[80%] min-h-[40%]">
                 <div className="flex-1 overflow-y-auto">
                     {/* Cabeçalho */}
-                    <div className="p-4 flex justify-between items-center border-b">
+                    <div className="sticky top-0 p-4 flex justify-between items-center border-bm bg-white z-10">
                         <h2 className="text-lg sm:text-xl font-semibold text-[#212121]">Detalhes do Produto</h2>
                         <button onClick={onClose} className="text-red-500">
                             <IoClose size={30} />
@@ -91,7 +91,7 @@ const ProductModal = ({ show, onClose, product }) => {
                             />
                         </div>
                         {/* Conteúdo interno */}
-                        <div className="lg:w-1/2 p-4 overflow-y-auto">
+                        <div className="lg:w-1/2 p-4 overflow-y-auto lg:overflow-hidden">
                             <h3 className="text-lg sm:text-xl font-semibold text-[#212121]">{product.title}</h3>
                             <p className="text-sm sm:text-base text-gray-600 font-opensans">{product.description}</p>
                             <p className="text-lg sm:text-xl font-bold mt-2 text-[#212121] font-opensans">R$ {product.price}</p>
