@@ -17,7 +17,7 @@ const Cartitems = () => {
 
   const formatCartItems = () => {
     return cart.map(item => {
-      return `Produto: ${item.title}\nDescrição: ${item.description}\nQuantidade: ${item.count}\nPreço Unitário: R$ ${item.price}\n`;
+      return `Produto: ${item.title}\nDescrição: ${item.description}\n Quantidade: ${item.count}\nPreço Unitário: R$ ${item.price}\n`;
     }).join('\n');
   };
 
